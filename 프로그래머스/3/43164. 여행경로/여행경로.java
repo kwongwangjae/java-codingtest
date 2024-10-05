@@ -1,21 +1,29 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
-class Solution {    
-    public String[] solution(String[][] tickets) {
-        Map<String, PriorityQueue<String>> map = new HashMap<>();
-        for(String[] s : tickets){
-            map.putIfAbsent(s[0], new PriorityQueue<String>());
-            map.get(s[0]).add(s[1]);
-        }
-        List<String> answer = new LinkedList<>();
-        Deque<String> stack = new ArrayDeque<>();
-        stack.push("ICN");
-        while(!stack.isEmpty()){
-            while(map.containsKey(stack.getFirst()) && !map.get(stack.getFirst()).isEmpty()){
-                stack.push(map.get(stack.getFirst()).poll());
-            }
-            answer.add(0, stack.pop());
-        }
-        return answer.toArray(new String[0]);
-    }
+class Solution {
+
+	public void dfs(List<String> results, Map<String, PriorityQueue<String>> map,String from) {
+		while (map.containsKey(from) && !map.get(from).isEmpty()) {
+			dfs(results, map, map.get(from).poll());
+		}
+		results.add(0, from);
+	}
+	public String[] solution(String[][] tickets) {
+		List<String> results = new LinkedList<>();
+
+		Map<String, PriorityQueue<String>> map = new HashMap<>();
+		for (String[] strings : tickets) {
+			map.putIfAbsent(strings[0], new PriorityQueue<>());
+			map.get(strings[0]).add(strings[1]);
+		}
+
+		dfs(results, map, "ICN");
+
+		return results.toArray(new String[0]);
+	}
 }
