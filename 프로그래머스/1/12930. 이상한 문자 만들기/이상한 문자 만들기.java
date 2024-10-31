@@ -8,10 +8,10 @@ class Solution {
 				num = 1;
 			}
 			else if(num % 2 == 1) {
-				answer += String.valueOf(ch).toUpperCase();
+				answer += Character.toUpperCase(ch);
 				num++;
 			}else{
-				answer += String.valueOf(ch).toLowerCase();
+				answer += Character.toLowerCase(ch);
 				num++;
 			}
 		}
