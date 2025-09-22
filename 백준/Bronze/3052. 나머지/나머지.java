@@ -1,31 +1,25 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.HashSet;
+import java.util.Set;
 
-class Main {
+public class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-	public int solution(int[] nums) {
-		Set<Integer> set = new HashSet<>();
-		for(int i = 0; i < 10; i++){
-			set.add(nums[i] % 42);
-		}
-		return set.size();
-	}
-
-	public static void main(String[] args) {
-		Main T = new Main();
-		Scanner kb = new Scanner(System.in);
-		// int n = kb.nextInt();
-		// int k = kb.nextInt();
-		// int[][] nums = new int[k][2];
-		// for(int i = 0; i < k; i++){
-		// 	nums[i][0] = kb.nextInt();
-		// 	nums[i][1] = kb.nextInt();
-		// }
-		int[] nums = new int[10];
-		for(int i = 0; i < 10; i++){
-			nums[i] = kb.nextInt();
+		Set<Integer> answer = new HashSet<>();
+		for (int i = 0; i < 10; i++) {
+			int num = Integer.parseInt(br.readLine());
+			answer.add(num % 42);
 		}
 
 
-		System.out.println(T.solution(nums));
+		bw.write(String.valueOf(answer.size()));
+		br.close();
+		bw.flush();
+		bw.close();
 	}
 }
