@@ -20,7 +20,7 @@ public class Main {
 			}
 			answer.append(dq.pollFirst()).append(", ");
 		}
-		// 마지막 쉼표와 공백 제거
+
 		answer.setLength(answer.length() - 2);
 		answer.append(">");
 		return answer.toString();
